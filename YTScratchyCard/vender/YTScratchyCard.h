@@ -11,23 +11,24 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol YTScratchyCardDelegate <NSObject>
+
+- (UIView *)coverViewWidthSuperSize:(CGSize)size;
+- (UIView *)prizeViewWidthSuperSize:(CGSize)size;
+
 @optional
 - (void)didScratchPercentChanged:(float)percent;
 @end
 
 
 @interface YTScratchyCard : UIView
-//遮挡的图片
-@property (strong,nonatomic)UIImage *maskImage;
 
+//构造方法
+- (instancetype)initWithFrame:(CGRect)frame delegate:(id)delegate;
 //刮痕尺寸
 @property (assign,nonatomic)CGFloat ScratchSize ;
 
 //重置
 - (void)resetView;
-
-// prizeView：奖品视图
-- (void)coverOnView:(UIView *)prizeView;
 
 //刮完了！
 - (void)completeScratch;

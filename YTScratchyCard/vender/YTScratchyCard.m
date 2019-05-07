@@ -9,16 +9,21 @@
 #import "YTScratchyCard.h"
 #import "UIImage(Extension).h"
 @interface YTScratchyCard()
-@property (strong,nonatomic)UIImageView  *maskImageView;
+@property (strong,nonatomic)UIView  *coverView;
+@property (strong,nonatomic)UIView  *prizeView;
+
+
 @property (strong,nonatomic)CAShapeLayer *maskLayer;
 @property (strong,nonatomic)UIBezierPath *maskPath;
+
 @end
 
 
 @implementation YTScratchyCard
 
-- (instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame delegate:(id)delegate{
     if(self == [super initWithFrame:frame]) {
+        self.delegate = delegate;
         [self initSubViews];
         [self configLayer];
     }
@@ -26,20 +31,20 @@
 }
 
 - (void)initSubViews {
-    self.maskImageView = [[UIImageView alloc]initWithFrame:self.bounds];
-    [self addSubview:self.maskImageView];
+   // [self addSubview:self.prizeView];
+    [self addSubview:self.prizeView];
+    [self addSubview:self.coverView];
+    [self addSubview:self.prizeView];
+    
+    
 }
 
 
 - (void)configLayer{
-    self.maskImageView.layer.mask = self.maskLayer;
+    self.prizeView.layer.mask = self.maskLayer;
 }
 
 
-- (void)setMaskImage:(UIImage *)maskImage {
-    _maskImage = maskImage;
-    self.maskImageView.image = maskImage;
-}
 
 - (void)resetView {
     
@@ -59,25 +64,18 @@
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
     
-    self.maskLayer.frame = self.maskImageView.frame;
-
-    
+    self.maskLayer.frame = self.prizeView.frame;
     [CATransaction commit];
     
     self.maskLayer.backgroundColor = [UIColor blueColor].CGColor;
 }
 
-- (void)coverOnView:(UIView *)view {
-    if(view.superview) {
-        [view.superview addSubview:self];
-    }
-}
 
 
 - (UIImage *)scratchyImage {
-    UIGraphicsBeginImageContextWithOptions(self.maskImageView.bounds.size, NO, 0);
+    UIGraphicsBeginImageContextWithOptions(self.prizeView.bounds.size, NO, 0);
     CGContextRef ref = UIGraphicsGetCurrentContext();
-    [self.maskImageView.layer renderInContext:ref];
+    [self.prizeView.layer renderInContext:ref];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
@@ -86,8 +84,8 @@
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     UITouch *touch = touches.anyObject;
-    CGPoint prePoint = [touch previousLocationInView:self.maskImageView];
-    CGPoint currentPoint = [touch locationInView:self.maskImageView];
+    CGPoint prePoint = [touch previousLocationInView:self.prizeView];
+    CGPoint currentPoint = [touch locationInView:self.prizeView];
     [self.maskPath moveToPoint:prePoint];
     [self.maskPath addLineToPoint:currentPoint];
     self.maskLayer.path = self.maskPath.CGPath;
@@ -125,8 +123,30 @@
         _ScratchSize = 30;
     }
     return _ScratchSize;
-    
 }
+
+- (UIView *)prizeView{
+    if(!_prizeView) {
+        UIView *view = [UIView new];
+        if([self.delegate respondsToSelector:@selector(prizeViewWidthSuperSize:)]){
+            view = [self.delegate prizeViewWidthSuperSize:self.frame.size];
+        }
+        _prizeView = view;
+    }
+    return _prizeView;
+}
+
+- (UIView *)coverView{
+    if(!_coverView) {
+        UIView *view = [UIView new];
+        if([self.delegate respondsToSelector:@selector(coverViewWidthSuperSize:)]){
+            view = [self.delegate coverViewWidthSuperSize:self.frame.size];
+        }
+        _coverView = view;
+    }
+    return _coverView;
+}
+
 
 
 @end
