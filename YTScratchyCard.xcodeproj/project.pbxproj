@@ -18,6 +18,7 @@
 		E3269EBC22801EDB00729072 /* YTScratchyCard.m in Sources */ = {isa = PBXBuildFile; fileRef = E3269EBB22801EDB00729072 /* YTScratchyCard.m */; };
 		E3269EBE2280258000729072 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E3269EBD2280258000729072 /* 12.jpg */; };
 		E33DD24122817C5B0000F57B /* UIImage(Extension).m in Sources */ = {isa = PBXBuildFile; fileRef = E33DD24022817C5B0000F57B /* UIImage(Extension).m */; };
+		E33DD244228194570000F57B /* 预览.gif in Resources */ = {isa = PBXBuildFile; fileRef = E33DD243228194570000F57B /* 预览.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		E3269EBD2280258000729072 /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
 		E33DD23F22817C5B0000F57B /* UIImage(Extension).h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage(Extension).h"; sourceTree = "<group>"; };
 		E33DD24022817C5B0000F57B /* UIImage(Extension).m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage(Extension).m"; sourceTree = "<group>"; };
+		E33DD243228194570000F57B /* 预览.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "预览.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				E3269E8B22801D8500729072 /* ViewController.h */,
 				E3269E8C22801D8500729072 /* ViewController.m */,
 				E3269E8E22801D8500729072 /* Main.storyboard */,
+				E33DD243228194570000F57B /* 预览.gif */,
 				E3269E9122801D8E00729072 /* Assets.xcassets */,
 				E3269E9322801D8E00729072 /* LaunchScreen.storyboard */,
 				E3269E9622801D8E00729072 /* Info.plist */,
@@ -256,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E33DD244228194570000F57B /* 预览.gif in Resources */,
 				E3269EBE2280258000729072 /* 12.jpg in Resources */,
 				E3269E9522801D8E00729072 /* LaunchScreen.storyboard in Resources */,
 				E3269E9222801D8E00729072 /* Assets.xcassets in Resources */,
