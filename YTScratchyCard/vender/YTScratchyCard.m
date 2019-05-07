@@ -31,8 +31,6 @@
 }
 
 - (void)initSubViews {
-   // [self addSubview:self.prizeView];
-    [self addSubview:self.prizeView];
     [self addSubview:self.coverView];
     [self addSubview:self.prizeView];
     
