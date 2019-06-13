@@ -18,7 +18,7 @@
     size_t height = CGImageGetHeight(cgimage); // 图片高度
     totalPixelCount = height * width;
     unsigned char *data = calloc(width * height * 4, sizeof(unsigned char));
-    CGColorSpaceRef space = CGColorSpaceCreateDeviceGray(); // 创建rgb颜色空间
+    CGColorSpaceRef space = CGColorSpaceCreateDeviceGray(); // 创建纯色空间
     CGContextRef context =
     CGBitmapContextCreate(data,
                           width,
